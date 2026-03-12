@@ -4,6 +4,7 @@ import { Clock, Users, LogOut, Wifi, WifiOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { socket, connectSocket, disconnectSocket } from '../services/socket';
 import { getZones, getTables } from '../services/api';
+import { useCart } from '../context/CartContext';
 
 // Mock data per l'MVP Frontend
 const MOCK_ZONES = [
@@ -33,6 +34,7 @@ const TableMap = () => {
     const [tables, setTables] = useState([]);
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('riva_user') || '{}'));
+    const { setCurrentTable } = useCart();
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -64,9 +66,9 @@ const TableMap = () => {
     }, []);
 
     const handleTableClick = (tableId) => {
-        // Here we would navigate to the specific Order Taking screen for this table
-        console.log("Opening table", tableId);
-        // navigate(`/order/${tableId}`);
+        const table = tables.find(t => t.id === tableId);
+        setCurrentTable(table);
+        navigate(`/order/${tableId}`);
     };
 
     return (

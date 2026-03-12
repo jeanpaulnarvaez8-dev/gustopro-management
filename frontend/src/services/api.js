@@ -30,4 +30,34 @@ export const getTables = async () => {
     return response.data;
 };
 
+export const getCategories = async () => {
+    const response = await api.get('/menu/categories');
+    return response.data;
+};
+
+export const getMenuItems = async (categoryId) => {
+    const response = await api.get('/menu/items', { params: { categoryId } });
+    return response.data;
+};
+
+export const getItemModifiers = async (itemId) => {
+    const response = await api.get(`/menu/items/${itemId}/modifiers`);
+    return response.data;
+};
+
+export const submitOrder = async (orderData) => {
+    const response = await api.post('/orders', orderData);
+    return response.data;
+};
+
+export const getPendingOrders = async () => {
+    const response = await api.get('/kds/pending');
+    return response.data;
+};
+
+export const updateItemStatus = async (itemId, status) => {
+    const response = await api.put(`/kds/items/${itemId}/status`, { status });
+    return response.data;
+};
+
 export default api;
