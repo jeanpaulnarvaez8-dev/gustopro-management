@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-riva-bordeaux: #8B0000;
+  --color-riva-gold: #D4AF37;
+  --color-riva-cream: #F5F5DC;
+  --color-riva-dark: #1A1A1A;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-riva-cream);
+  color: var(--color-riva-dark);
+}
