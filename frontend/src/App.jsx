@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import TableMap from './pages/TableMap';
 import OrderPage from './pages/OrderPage';
 import KDS from './pages/KDS';
+import CheckoutPage from './pages/CheckoutPage';
 import { CartProvider } from './context/CartContext';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/tables" element={<TableMap />} />
             <Route path="/order/:tableId" element={<OrderPage />} />
             <Route path="/kds" element={<KDS />} />
+            <Route path="/checkout/:orderId" element={<CheckoutPage />} />
             
             {/* Default redirect to Login for now */}
             <Route path="*" element={<Navigate to="/login" replace />} />

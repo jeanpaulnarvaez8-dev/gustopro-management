@@ -60,4 +60,14 @@ export const updateItemStatus = async (itemId, status) => {
     return response.data;
 };
 
+export const getPreConto = async (orderId) => {
+    const response = await api.get(`/billing/pre-conto/${orderId}`);
+    return response.data;
+};
+
+export const processPayment = async (paymentData) => {
+    const response = await api.post('/billing/pay', paymentData);
+    return response.data;
+};
+
 export default api;

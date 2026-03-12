@@ -114,12 +114,25 @@ const TableMap = () => {
                      {tables.filter(t => t.zone_id === activeZone).map(table => (
                         <motion.div
                             key={table.id}
+                            layoutId={table.id}
                             drag
                             dragMomentum={false}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => handleTableClick(table.id)}
-                            className={`absolute w-32 h-32 rounded-2xl border-2 flex flex-col items-center justify-center p-2 shadow-sm cursor-pointer ${STATUS_COLORS[table.status]}`}
+                            onClick={() => {
+                                if (table.status === 'occupied' && table.active_order_id) {
+                                    navigate(`/checkout/${table.active_order_id}`);
+                                } else {
+                                    navigate(`/order/${table.id}`);
+                                }
+                            }}
+                            className={`
+                                absolute w-16 h-16 rounded-xl flex items-center justify-center 
+                                cursor-pointer shadow-lg border-2 transition-all hover:scale-105
+                                ${table.status === 'occupied' ? 'bg-red-500 border-red-700' : 
+                                  table.status === 'free' ? 'bg-white border-gray-200 text-black' : 
+                                  'bg-yellow-500 border-yellow-700'}
+                            `}
                             style={{ left: `${table.x}%`, top: `${table.y}%` }}
                         >
                             <span className="text-3xl font-bold mt-2">{table.number}</span>

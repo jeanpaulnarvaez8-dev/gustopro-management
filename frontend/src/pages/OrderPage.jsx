@@ -174,11 +174,24 @@ const OrderPage = () => {
                         <button 
                             onClick={handleSendToKitchen}
                             disabled={cart.length === 0 || isSubmitting}
-                            className="w-full py-4 bg-[var(--color-riva-bordeaux)] text-white rounded-xl font-bold disabled:opacity-50 hover:opacity-90 transition shadow-lg flex items-center justify-center gap-2"
+                            className="flex-1 py-4 bg-[var(--color-riva-gold)] text-black rounded-2xl font-bold uppercase tracking-widest disabled:opacity-30 disabled:cursor-not-allowed hover:scale-[1.02] transition-transform active:scale-95 flex items-center justify-center gap-2"
                         >
                             {isSubmitting ? (
                                 <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                             ) : 'Invia in Cucina'}
+                        </button>
+                        
+                        {/* If we had a persistent orderId, we'd show the checkout button */}
+                        <button 
+                            onClick={() => {
+                                // For MVP, we'll assume there's one active order per table session
+                                // Ideally we'd fetch this from the table status
+                                alert('Per questo MVP, usa il link diretto /checkout/<orderId> o implementa il recupero orderId dalla tabella');
+                            }}
+                            className="w-full py-4 bg-[var(--color-riva-bordeaux)] text-white rounded-2xl font-bold disabled:opacity-50 hover:opacity-90 transition shadow-lg flex items-center justify-center gap-2"
+                        >
+                            <CreditCard className="w-5 h-5" />
+                            <span>Vai al Pagamento</span>
                         </button>
                     </div>
                 </div>
